@@ -1,6 +1,6 @@
 <?php
 
-$neuron_size = 50;
+$neuron_size = 50; // height & width in px
 $tiles_between_neurons = 2;
 $draw_connection_weights = true;
 $tiles_between_layers = 3;
