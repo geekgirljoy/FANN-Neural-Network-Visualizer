@@ -2,7 +2,17 @@
 
 $neuron_size = 50; // height & width in px
 $tiles_between_neurons = 2;
+
 $draw_connection_weights = true;
+
+// In densely connected networks it can be difficult 
+// to see all the connections so randomizing the 
+// connection color can improve the visability some/
+// See the Pathfinder examples.
+// true = random color
+// false = colors: red negitive, green positive
+$random_connection_color = true;
+
 $tiles_between_layers = 3;
 $draw_grid = false;
 $output_stats_image = true; // Output a second image with the ANN stats?
@@ -162,15 +172,21 @@ foreach($my_neurons as $key=>&$neuron){
         foreach($neuron['connections'] as $connection=>$weight){
             
             // What color is the connection
-            if($weight > 0.0){
-                $color = $colors['positive_connection_weight_color'];
-            }
-            elseif($weight < 0.0){
-                $color = $colors['negitive_connection_weight_color'];
-            }
-            else{
-                $color = $colors['dead_connection_weight_color'];
-            }
+			if($random_connection_color == false){
+				if($weight > 0.0){
+					$color = $colors['positive_connection_weight_color'];
+				}
+				elseif($weight < 0.0){
+					$color = $colors['negitive_connection_weight_color'];
+				}
+				else{
+					$color = $colors['dead_connection_weight_color'];
+				}
+			}
+			else{
+				$color = imagecolorallocate($neural_network_image, mt_rand(0,255), mt_rand(0,255), mt_rand(0,255));
+			}
+			
             
             // Set connection thickness
             if($draw_connection_weights == true){
@@ -244,8 +260,6 @@ if($output_stats_image == true){
 
     // Paint Background
     imagefill($neural_network_stats_image, 0, 0, $colors['background']);
-
-
 
 
     $font = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Pacifico'. DIRECTORY_SEPARATOR . 'Pacifico-Regular.ttf';
