@@ -7,7 +7,7 @@ $draw_connection_weights = true;
 
 // In densely connected networks it can be difficult 
 // to see all the connections so randomizing the 
-// connection color can improve the visibility some/
+// connection color can improve the visibility some,
 // See the Pathfinder examples.
 // true = random color
 // false = colors: red negitive, green positive
