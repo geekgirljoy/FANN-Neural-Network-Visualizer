@@ -47,7 +47,7 @@ $connections_array = fann_get_connection_array($ann); // array of FANN connectio
 fann_destroy($ann);
 
 
-// Array of FANN CONN OBJ's to Array of Keyed Nurons
+// Array of FANN CONN OBJ's to Array of Keyed Neurons
 // Use the connections to model the neurons.
 // The $my_neurons array holds the neurons in a list with the key
 // being the from_neuron. Additionally, this
