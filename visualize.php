@@ -25,11 +25,11 @@ $ann_name = "xor_float.net";
 ////////////////////////////////////////////////////////////////////////
 $ann = fann_create_from_file(dirname(__FILE__) . DIRECTORY_SEPARATOR . $ann_name); //Load ANN
 
-$num_​inputs = fann_get_num_input($ann); // int
-$num_​layers = fann_get_num_layers($ann); // int
-$num_​outputs = fann_get_num_output($ann); // int
-$total_​neurons = fann_get_total_neurons($ann); // int
-$total_​connections = fann_get_total_connections($ann); // int
+$num_inputs = fann_get_num_input($ann); // int
+$num_layers = fann_get_num_layers($ann); // int
+$num_outputs = fann_get_num_output($ann); // int
+$total_neurons = fann_get_total_neurons($ann); // int
+$total_connections = fann_get_total_connections($ann); // int
 $layers_array = fann_get_layer_array($ann); // array
 $bias_array = fann_get_bias_array($ann); // array 
 $connections_array = fann_get_connection_array($ann); // array of FANN connection objects
@@ -44,7 +44,7 @@ fann_destroy($ann);
 // also creates a "connections" array on the neuron
 // with a list of neurons that this neuron is connected 
 // to with the value being the connection weight.
-$my_neurons = array_fill(0, $total_​neurons, array());
+$my_neurons = array_fill(0, $total_neurons, array());
 foreach($connections_array as $connection){
     $my_neurons[$connection->from_neuron]['connections'][$connection->to_neuron] = $connection->weight;
 }
@@ -95,8 +95,8 @@ foreach($my_neurons as $index=>&$neuron){
         $col += $tiles_between_neurons;
     }
     
-    $neuron['x'] = ($neuron_size * $col) - (($neuron_size / 2) );
-    $neuron['y'] = ($neuron_size * $row) - (($neuron_size / 2) );
+    $neuron['x'] = ($neuron_size * $col) - ($neuron_size / 2);
+    $neuron['y'] = ($neuron_size * $row) - ($neuron_size / 2);
 }
 
 
@@ -110,7 +110,7 @@ $largest_layer = max($complete_layers); // Find the largest layer width
 
 // Create a Blank Image
 $image_width = ($neuron_size * ($largest_layer + ($tiles_between_neurons / 2))) * $tiles_between_neurons - ($neuron_size) + 1;
-$image_height = ($neuron_size * $num_​layers) * $tiles_between_layers - ($neuron_size * ($tiles_between_layers - 1)) + 1;
+$image_height = ($neuron_size * $num_layers) * $tiles_between_layers - ($neuron_size * ($tiles_between_layers - 1)) + 1;
 $neural_network_image = imagecreatetruecolor($image_width, $image_height);
 
 // Create Colors Array
@@ -256,11 +256,11 @@ if($output_stats_image == true){
     $y = 50;
     $increment = $y + 10;
 
-    imagettftext($neural_network_stats_image, $size, $angle, $x, $y, $colors['inputs_text_color'], $font, $num_​inputs . ' Inputs');
+    imagettftext($neural_network_stats_image, $size, $angle, $x, $y, $colors['inputs_text_color'], $font, $num_inputs . ' Inputs');
     $y += $increment;
-    imagettftext($neural_network_stats_image, $size, $angle, $x, $y, $colors['hidden_text_color'], $font, $total_​neurons - ($num_​inputs + $num_​outputs + array_sum($bias_array)) . ' Hidden');
+    imagettftext($neural_network_stats_image, $size, $angle, $x, $y, $colors['hidden_text_color'], $font, $total_neurons - ($num_inputs + $num_outputs + array_sum($bias_array)) . ' Hidden');
     $y += $increment;
-    imagettftext($neural_network_stats_image, $size, $angle, $x, $y, $colors['outputs_text_color'], $font, $num_​outputs . ' Outputs');
+    imagettftext($neural_network_stats_image, $size, $angle, $x, $y, $colors['outputs_text_color'], $font, $num_outputs . ' Outputs');
     $y += $increment;
     imagettftext($neural_network_stats_image, $size, $angle, $x, $y, $colors['bias_text_color'], $font, array_sum($bias_array) . ' Bias');
     $y += $increment;
