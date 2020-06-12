@@ -245,7 +245,8 @@ imagedestroy($neural_network_image);
 
 if($output_stats_image == true){
     // Create the image
-    $neural_network_stats_image = imagecreatetruecolor(250, 400);
+    //$neural_network_stats_image = imagecreatetruecolor(250, 400);
+    $neural_network_stats_image = imagecreate(250, 400);
     
     // Create Colors Array
     $colors = array(
