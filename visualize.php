@@ -1,4 +1,7 @@
 <?php
+ini_set("max_execution_time", "-1");
+ini_set('memory_limit','-1');
+set_time_limit(0);
 
 $neuron_size = 50; // height & width in px
 $tiles_between_neurons = 2;
